@@ -157,4 +157,58 @@ preds = pd.Series(index=targets.index, data=preds)
 line_plot(targets, preds, 'actual', 'prediction', lw=3)
 plt.savefig("Predicted_VS_Actual.png")
 
+n_points = 30
+
+"""
+Let's Compare returns
+"""
+
+actual_returns = targets.pct_change()[1:]
+predicted_returns = preds.pct_change()[1:]
+
+
+def dual_line_plot(line1, line2, line3, line4, label1=None, label2=None, title='', lw=2):
+    import matplotlib.dates as mdates
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(21, 9))
+    ax1.plot(line1, label=label1, linewidth=lw)
+    ax1.plot(line2, label=label2, linewidth=lw)
+    ax2.plot(line3, label=label1, linewidth=lw)
+    ax2.plot(line4, label=label2, linewidth=lw)
+    ax2.set_xticks(ax1.get_xticks())
+    ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+    ax1.set_ylabel('daily returns', fontsize=14)
+    ax2.legend(loc='best', fontsize=18);
+
+
+dual_line_plot(actual_returns[-n_points:],
+          predicted_returns[-n_points:],
+          actual_returns[-n_points:][:-1],
+          predicted_returns[-n_points:].shift(-1),
+          'actual returns', 'predicted returns', lw=3)
+
+
+line_plot(actual_returns[-n_points:][:-1], predicted_returns[-n_points:].shift(-1),
+           'actual returns', 'predicted returns', lw=3)
+plt.savefig("Actualresults_VS_PredictedResults.png")           
+
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 9))
+
+# actual correlation
+corr = np.corrcoef(actual_returns, predicted_returns)[0][1]
+ax1.scatter(actual_returns, predicted_returns, color='k', marker='o', alpha=0.5, s=100)
+ax1.set_title('r = {:.2f}'.format(corr), fontsize=18)
+
+# shifted correlation
+shifted_actual = actual_returns[:-1]
+shifted_predicted = predicted_returns.shift(-1).dropna()
+corr = np.corrcoef(shifted_actual, shifted_predicted)[0][1]
+ax2.scatter(shifted_actual, shifted_predicted, color='k', marker='o', alpha=0.5, s=100)
+ax2.set_title('r = {:.2f}'.format(corr), fontsize=18);
+plt.savefig('CompareResults.png')
+
+
+
+
+
 
