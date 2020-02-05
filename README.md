@@ -1,11 +1,14 @@
 This repository is dedicated to the bitcoin prediction. The phase of the prediction is the data extraction which for this project I used the the API that provided by https://www.cryptocompare.com/. Below I have added the top 5 responses which taken from the API:
-  close     high      low     open  volumefrom      volumeto
+
+
+
+             close     high      low     open     volumefrom      volumeto
 time                                                                    
-2020-02-01  9384.45  9455.92  9296.57  9342.23    14778.25  1.386141e+08
-2020-02-02  9334.25  9469.84  9169.21  9384.45    24059.37  2.253226e+08
-2020-02-03  9288.96  9605.66  9230.83  9334.25    33363.87  3.123151e+08
-2020-02-04  9171.98  9347.12  9089.52  9288.96    26614.92  2.449980e+08
-2020-02-05  9666.48  9750.28  9162.98  9171.98    39236.51  3.720042e+08
+2020-02-01  9384.45  9455.92  9296.57  9342.23    14778.25        1.386141e+08
+2020-02-02  9334.25  9469.84  9169.21  9384.45    24059.37        2.253226e+08
+2020-02-03  9288.96  9605.66  9230.83  9334.25    33363.87        3.123151e+08
+2020-02-04  9171.98  9347.12  9089.52  9288.96    26614.92        2.449980e+08
+2020-02-05  9666.48  9750.28  9162.98  9171.98    39236.51        3.720042e+08
 
 After taking the required information from the API which varies from 2014 to 2020, I took this dataset and devided into 80% as the training test and 20% as the validation/test(10% validation and 10% test).At below figure you could see the behaviour of the timeseries that we are working on: 
 ![BitCoinPrice_USD_OverTime](https://user-images.githubusercontent.com/23243761/73881560-d5d83c80-4860-11ea-8bba-b2262399d611.png)
