@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from sklearn.metrics import mean_absolute_error
+from keras.utils.vis_utils import plot_model
 
 sns.set_palette('Set2')
 
@@ -139,6 +140,8 @@ model = build_lstm_model(
 history = model.fit(
     X_train, y_train, epochs=epochs, batch_size=batch_size, verbose=1, shuffle=True)
 
+print(model.summary())
+plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
 
 """
 Plot predictions
