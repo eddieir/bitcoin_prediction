@@ -148,7 +148,7 @@ targets = test[target_col][window_len:]
 preds = model.predict(X_test).squeeze()
 
 
-mean_absolute_error(preds, y_test)
+print(mean_absolute_error(preds, y_test)) #MAE is 0.02220427132288572
 
 
 preds = test[target_col].values[:-window_len] * (preds + 1)
